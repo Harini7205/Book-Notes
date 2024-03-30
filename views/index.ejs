@@ -1,0 +1,43 @@
+<%- include("partials/header.ejs"); -%>
+<div class="navbar">
+    <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+        <p>Bookify</p>
+    </div>
+    <form method="POST" action="/search">
+        <input class="searchbar" type="text" name="search" placeholder="Enter title to search">
+        <button type="submit" class="btn go">Search</button>
+    </form>
+    <form method="POST" action="/new"><button class="addnewbook">Add new book</button></form>
+</div>
+<div id="home">
+    <form method="POST" action="/sort">
+        <label for="sort">Sort By: </label>
+        <select name="sort" id="sort">
+            <option value="title">Book Title</option>
+            <option value="rating">Book Rating</option>
+            <option value="author">Book Author</option>
+        </select>
+        <button type="submit" class="btn go">Go</button>
+    </form>
+    <div class="body">
+    <% books.forEach((book) => { %>
+        <div class="book">
+            <img alt="book" src="data:image/jpeg;base64, <%= book.image %>">
+            <h3><%=book.title%></h3>
+            <h5><%=book.author%></h5>
+            <div class="rating">
+                <% for (let i = 0; i < 5; i++) { %>
+                    <span class="star <%= i < book.rating ? 'checked' : '' %>"></span>
+                <% } %>
+            </div>
+            <p><%=book.review%></p>
+            <a href="https://www.amazon.in/s?k=<%= book.isbn %>&crid=ZW36OOWAGQ70&sprefix=9780439064873%2Caps%2C810&ref=nb_sb_noss" 
+                class="link">Get Book</a>
+            <a href="/book?isbn=<%=book.isbn%>&title=<%=book.title%>&author=<%=book.author%>&rating=<%=book.rating%>&review=<%=book.review%>" class="link">Edit review</a>
+            <a href="/delete?isbn=<%=book.isbn%>" class="link">Delete review</a>
+        </div>
+    <% }); %>
+    </div>
+</div>
+<%- include("partials/footer.ejs"); -%>
