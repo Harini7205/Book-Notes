@@ -60,7 +60,6 @@ app.post("/add",async (req,res)=>{
             const response= await axios.get(`https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`,{responseType:'arraybuffer'});
             const image = Buffer.from(response.data,"binary");
             await db.query("INSERT INTO books(isbn,title,author,rating,review,image) VALUES($1,$2,$3,$4,$5,$6)",[isbn,title,author,rating,review,image]);
-            console.log("Done");
             res.redirect("/");
         }
     }
