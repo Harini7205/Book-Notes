@@ -2,12 +2,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
-
+import dbConfig from './dbConfig';
+import dotenv from 'dotenv';
 
 const app=express();
 const port=3000;
-const itemsPool = require('./dbConfig');
-const dotenv = require('dotenv');
+const itemsPool = dbConfig();
 dotenv.config();
 
 const adminUsername="admin";
