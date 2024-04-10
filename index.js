@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
-import dbConfig from './dbConfig';
+import dbConfig from './dbConfig.js';
 import dotenv from 'dotenv';
 
 const app=express();
