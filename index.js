@@ -14,14 +14,14 @@ const adminPassword="bookify";
 let sort="title";
 let data=false;
 
-/*const db=new pg.Client({
-    user:"postgres",
-    host:"localhost",
-    database:"books",
-    password:"harini",
+const db=new pg.Client({
+    user:"random",
+    host:"dpg-co5dik20si5c73f6ughg-a",
+    database:"books_zafo",
+    password:"XCCGsHZ16lKaDblLb8octIR3zAW6H9Kn",
     port:5432,
 });
-db.connect();*/
+db.connect();
 const db=itemsPool;
 
 app.use(bodyParser.urlencoded({extended:true}));
