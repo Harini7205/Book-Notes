@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
-import itemsPool from './dbConfig.js';
 import dotenv from 'dotenv';
 
 const app=express();
@@ -159,8 +158,3 @@ app.get("/search/suggestions",async (req,res)=>{
 app.listen(port,()=>{
     console.log(`Server running at ${port}`);
 });
-
-export default itemsPool;
-
-
-
