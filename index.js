@@ -14,12 +14,15 @@ const adminPassword="bookify";
 let sort="title";
 let data=false;
 
-const db=new pg.Client({
-    user:"random",
-    host:"dpg-co5dik20si5c73f6ughg-a",
-    database:"books_zafo",
-    password:"XCCGsHZ16lKaDblLb8octIR3zAW6H9Kn",
-    port:5432,
+const db = new pg.Client({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    ssl: {
+        rejectUnauthorized: false // important for Neon
+    }
 });
 db.connect();
 
@@ -158,3 +161,4 @@ app.listen(port,()=>{
 });
 
 export default itemsPool;
+
