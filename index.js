@@ -9,8 +9,8 @@ const app=express();
 const port=3000;
 dotenv.config();
 
-const adminUsername="admin";
-const adminPassword="bookify";
+const adminUsername=process.env.ADMIN_USER;
+const adminPassword=process.env.ADMIN_PASSWORD;
 let sort="title";
 let data=false;
 
@@ -156,34 +156,11 @@ app.get("/search/suggestions",async (req,res)=>{
     }
 })
 
-app.get("/update-images", async (req, res) => {
-    try {
-        const result = await db.query("SELECT isbn FROM books");
-        const isbns = result.rows;
-
-        for (let i = 0; i < isbns.length; i++) {
-            const isbn = isbns[i].isbn;
-            try {
-                const response = await axios.get(`https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`, { responseType: 'arraybuffer' });
-                const image = Buffer.from(response.data, "binary");
-                await db.query("UPDATE books SET image = $1 WHERE isbn = $2", [image, isbn]);
-                console.log(`Updated image for ISBN: ${isbn}`);
-            } catch (imageErr) {
-                console.log(`Could not update image for ISBN: ${isbn}`);
-            }
-        }
-        res.send("Image update complete. Check logs for results.");
-    } catch (err) {
-        console.error("Failed to fetch ISBNs:", err);
-        res.status(500).send("Error updating images.");
-    }
-});
-
-
 app.listen(port,()=>{
     console.log(`Server running at ${port}`);
 });
 
 export default itemsPool;
+
 
 
