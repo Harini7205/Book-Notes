@@ -1,4 +1,4 @@
-# Bookify: Your Personal Book Notes
+# Bookify: My Personal Book Notes
 
 Bookify is a full-stack web application designed for creating and managing a personal collection of book reviews. Users can browse, search, and sort through the book entries, while an admin has full CRUD (Create, Read, Update, Delete) functionality to manage the content. The application automatically fetches book covers from the Open Library API using the book's ISBN.
 
